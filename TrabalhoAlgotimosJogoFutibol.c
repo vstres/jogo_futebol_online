@@ -1,5 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;//gerar numeros ale
+
 int main()
 {
  //Lista de Jogadores
@@ -11,18 +16,25 @@ int main()
  char *sobrenome1 =" da Silva";
  int idade1 = 25;
  char *time1 = "Vasco";
- float valor = 90.000;
+ int valor = 10000000/100;//jogador vale 100.000
  
- printf("\n\nID: %i", id);
+ printf("\n\nID: %d", id);
  printf("\nNome: %s%s", nome1, sobrenome1);
- printf("\nIdade: %i", idade1);
+ printf("\nIdade: %d", idade1);
  printf("\nTime: %s", time1);
- printf("\nValor R$%.3f", valor);
+ printf("\nValor R$%.3d", valor);
 
 
  printf("\n\n\n*********************\n");
  printf("* Atributos Jogador *\n");
  printf("*********************");
+ 
+ 
+  srand(10);
+    cout<<rand()<<endl;
+
+    return 0;
+ 
 
  printf("\n\n\n");
  return 0;
