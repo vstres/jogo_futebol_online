@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 
-using namespace std;//gerar numeros ale
+using namespace std;//gerar numeros aleatório 
 
 int main()
 {
@@ -30,7 +30,7 @@ int main()
  printf("*********************");
  
  
-  srand(10);
+  srand(10); //gerar números aleatório 
     cout<<rand()<<endl;
 
     return 0;
