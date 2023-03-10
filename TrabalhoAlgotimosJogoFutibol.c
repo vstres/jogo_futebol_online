@@ -53,7 +53,6 @@ void printDados( struct Dados DadosJogador ) {
    printf( "Idade : %d\n",DadosJogador.Idade);
    printf( "Time : %s\n", DadosJogador.Time);
    printf( "Valor : %d\n", DadosJogador.Valor);
-   printf("DADOS DO JOGADOR 2");
    printf("\n");
    
 }
