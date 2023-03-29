@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
+#include <string.h>
+
+FILE *Arquivo;
+
+// retorna um nome aleatório
+char *gerar_nome() {
+    char *nomes[] = {"Lucas", "Alex", "Rodrigo", "Gabriel", "Max", "Miguel", "Guilherme", "Felipe", "Gustavo", "Rafael", "Arthur", "Caio", "Pamela", "Sarah", "Nicolas", "Nathan", "Otavio", "Leonardo", "Pedro", "Bruno", "Ana", "Julia", "Fernanda", "Isabella", "Sophia", "Stella", "Gabriela", "Maria", "Carolina", "Amanda", "Leticia"};
+    int num_nomes = sizeof(nomes) / sizeof(char*);
+    return nomes[rand() % num_nomes];
+}
+
+// retorna um sobrenome aleatório
+char *gerar_sobrenome() {
+    char *sobrenomes[] = {"Silva", "Santos", "Oliveira", "Souza", "Pereira", "Rodrigues", "Costa", "Alves", "Lima", "Ferreira", "Gomes", "Santana", "Alcantara", "Dantas", "Farias", "Lacerda", "Lopes", "Monteiro", "Campos", "Azevedo", "Cardoso", "Martins", "Batista", "Barros", "Ribeiro", "Carvalho", "Barbosa", "Nascimento"};
+    int num_sobrenomes = sizeof(sobrenomes) / sizeof(char*);
+    return sobrenomes[rand() % num_sobrenomes];
+}
+
+// retorna um valor de mercado aleatório entre 10 e 100 milhões
+int gerar_valor_mercado() {
+    return (rand() % 99 + 1) * 100000;
+}
+
+// retorna uma estatística aleatória entre 1 e 100
+int gerar_estatistica() {
+    return rand() % 100 + 1;
+}
+
+// retorna true com probabilidade de 30%
+bool gerar_bool() {
+    return rand() % 10 < 3;
+}
+
+// retorna uma posição aleatória
+char *gerar_posicao() {
+    char *posicoes[] = {"Gol", "Defesa", "Meio", "Ataque", "Libero"};
+    int num_posicoes = sizeof(posicoes) / sizeof(char*);
+    return posicoes[rand() % num_posicoes];
+}
+
+// retorna true com probabilidade de 10%
+bool gerar_machucado() {
+    return rand() % 10 == 0;
+}
+
+// exibe uma carta de jogador
+void exibir_carta(int id, char *nome, char *sobrenome, int idade, char *time, int valor_mercado, int forca, int velocidade, int resistencia, int vontade, int criatividade, bool lideranca, char *posicao, bool machucado) {
+//Gravando dados em um arquivo
+    fprintf(Arquivo,"ID %d:\n", id);
+    fprintf(Arquivo,"Nome: %s %s\n", nome, sobrenome);
+    fprintf(Arquivo,"Idade: %d\n", idade);
+    fprintf(Arquivo,"Time: %s\n", time);
+    fprintf(Arquivo,"Valor de Mercado: %d\n", valor_mercado);
+    fprintf(Arquivo,"Força: %d\n", forca);
+    fprintf(Arquivo,"Velocidade: %d\n", velocidade);
+    fprintf(Arquivo,"Resistência: %d\n", resistencia);
+    fprintf(Arquivo,"Vontade: %d\n", vontade);
+    fprintf(Arquivo,"Criatividade: %d\n", criatividade);
+    fprintf(Arquivo,"Liderança: %s\n", lideranca ? "Sim" : "Não");
+    fprintf(Arquivo,"Posição: %s\n", posicao);
+    fprintf(Arquivo,"Machucado: %s\n\n", machucado ? "Sim" : "Não");
+}
+
+int main() {
+    
+// abre o arquivo para escrita.
+    Arquivo = fopen("NomeArquivoJogador.txt", "w");
+        // verifica se houve erro na abertura do arquivo
+    if (Arquivo == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        return 1;
+    }
+
+
+srand(time(NULL)); // inicializa o gerador de números aleatórios 
+char *times[] = {"Real Madrid", "Barcelona", "Paris Saint-Germain", "Bayern Munich", "Manchester City", "Liverpool", "Chelsea", "Manchester United", "Gremio", "Vasco", "Flamengo", "Santos", "Fluminense", "Botafogo", "Cruzeiro", "Juventus", "Palmeiras", "Inter Milan", "Napoli", "Corinthias", "Sao Paulo"};
+
+int num_cartas = 1000;
+int idade_minima = 16;
+int idade_maxima = 45;
+char *posicoes[] = {"Gol", "Defesa", "Meio", "Ataque", "Libero"};
+
+for (int i = 1; i <= num_cartas; i++) {
+    char *nome = gerar_nome();
+    char *sobrenome = gerar_sobrenome();
+    int idade = rand() % (idade_maxima - idade_minima + 1) + idade_minima; // gera uma idade entre 16 e 45 anos
+    char *time = times[rand() % (sizeof(times) / sizeof(char*))];
+    int valor_mercado = gerar_valor_mercado();
+    int forca = gerar_estatistica();
+    int velocidade = gerar_estatistica();
+    int resistencia = gerar_estatistica();
+    int vontade = gerar_estatistica();
+    int criatividade = gerar_estatistica();
+    bool lideranca = gerar_bool();
+    char *posicao = posicoes[rand() % (sizeof(posicoes) / sizeof(char*))];
+    bool machucado = gerar_machucado();
+
+    exibir_carta(i, nome, sobrenome, idade, time, valor_mercado, forca, velocidade, resistencia, vontade, criatividade, lideranca, posicao, machucado);
+    
+
+}
+
+return 0;
+
+}
